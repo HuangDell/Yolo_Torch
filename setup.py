@@ -44,15 +44,14 @@ def _train(model, train_data, valid_data):
 
 
 def test():
-    model = Yolo(split_size=7, num_boxes=2, num_cls=2).to(config.device)
+    model = Yolo().to(config.device)
     model.load()
     model.eval()
-
-    printf.info(f"Accuracy {acc * 100}%")
+    model.evaluate(te)
 
 
 def train():
-    model = Yolo(split_size=7, num_boxes=2, num_cls=2).to(config.device)
+    model = Yolo().to(config.device)
     loss, acc = _train(model, valid_data=load.test_data, train_data=load.train_data)
     save_model(model)
     draw_result(config.epochs, loss, acc)
