@@ -70,7 +70,7 @@ class VocDataset(torch.utils.data.Dataset):
 
 
 tran = transform.Compose([
-    transform.Resize(448, 448),
+    transform.Resize((448, 448)),
     transform.ToTensor(),
 ])
 
