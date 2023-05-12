@@ -33,12 +33,11 @@ def _train(model, train_data, valid_data):
             optimizer.zero_grad()
             scheduler.step()
 
-        acc = model.validation(valid_data)  # 进行验证
         losses = losses / len(train_data)
-        result = f'loss {losses},mIou {acc}'
+        result = f'loss {losses}'
 
         loss_list.append(losses)
-        acc_list.append(acc)
+        acc_list.append(0)
         bar.set_description(result)
         printf.info(result)
     return loss_list, acc_list
@@ -54,6 +53,6 @@ def test():
 
 def train():
     model = Yolo(split_size=7, num_boxes=2, num_cls=2).to(config.device)
-    loss, acc = _train(model, valid_data=load.data, train_data=load.data)
+    loss, acc = _train(model, valid_data=load.test_data, train_data=load.train_data)
     save_model(model)
     draw_result(config.epochs, loss, acc)

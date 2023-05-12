@@ -25,7 +25,7 @@ architecture_config = [
 ]
 
 
-class ConvBlock(BaseModel):
+class ConvBlock(nn.Module):
 
     def __init__(self, in_channels, out_channels, **kwargs):
         super(ConvBlock, self).__init__()
@@ -37,7 +37,7 @@ class ConvBlock(BaseModel):
         return self.relu(self.bn(self.conv(x)))
 
 
-class Yolo(nn.Module):
+class Yolo(BaseModel):
 
     def __init__(self, in_channels=3, split_size=7, num_boxes=2, num_cls=20):
 
