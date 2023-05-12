@@ -5,8 +5,8 @@ import torch
 import os
 
 # log information
-project_name = "UNet"
-version = "v1.7"
+project_name = "YOLO"
+version = "v1.0"
 path_name = "out/" + project_name + version + "/"
 image_path_name = path_name+"images/"
 
@@ -30,11 +30,12 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 # data
 DATA_PATH = './data/VOC_YOLO'
-BATCH_SIZE = 16
+BATCH_SIZE = 32
 CLASS_NUM = 9
 WIDTH = 320
 HEIGHT = 240
 IDX = 1
+TEST_NUMS = 30
 
 if not os.path.exists(path_name):
     os.makedirs(path_name)

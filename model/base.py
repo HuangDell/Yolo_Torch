@@ -21,7 +21,7 @@ class BaseModel(nn.Module):
 
     # 测试模型正确率
     def evaluate(self, test_data, test_nums=10):
-        with torch.no_grad:
+        with torch.no_grad():
             for i, batch in enumerate(test_data):
                 if i == test_nums:
                     return
