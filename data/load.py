@@ -75,8 +75,9 @@ tran = transform.Compose([
 ])
 
 train_dataset = VocDataset(config.DATA_PATH + '/images', config.DATA_PATH + '/labels', config.DATA_PATH + "/train.csv",
-                     transformation=tran)
-test_dataset = VocDataset(config.DATA_PATH + '/images', config.DATA_PATH + '/labels', config.DATA_PATH + "/test.csv",
-                     transformation=tran)
+                           transformation=tran)
+test_dataset = VocDataset(config.DATA_PATH + '/images', config.DATA_PATH + '/labels',
+                          config.DATA_PATH + "/8examples.csv",transformation=tran)
+
 train_data = torch.utils.data.DataLoader(train_dataset, batch_size=config.BATCH_SIZE, shuffle=True, num_workers=4)
 test_data = torch.utils.data.DataLoader(test_dataset, batch_size=1, shuffle=False, num_workers=4)

@@ -35,7 +35,6 @@ CLASS_NUM = 9
 WIDTH = 320
 HEIGHT = 240
 IDX = 1
-TEST_NUMS = 30
 
 if not os.path.exists(path_name):
     os.makedirs(path_name)

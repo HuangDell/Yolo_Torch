@@ -19,22 +19,23 @@ def create_model_dir():
 
 
 # 输出预测结果
-def show_output(img):
+def show_output(label, img, pred):
     img = img[0].permute(1, 2, 0)
     img = (img.cpu().numpy() * 255).astype(np.uint8)
     img = Image.fromarray(img)
     draw = ImageDraw.Draw(img)
 
-    boxes = cellboxes_to_boxes(img)[0]
+    boxes = cellboxes_to_boxes(pred)[0]
     boxes = nMS(boxes)
 
     for box in boxes:
         x1, y1, x2, y2 = box_to_corners(box)
         class_name = class_dict[int(box[0]) + 1]
-        draw.rectangle([(x1, y1), (x2, y2)], outline="red", width=5)
+        draw.rectangle([(x1, y1), (x2, y2)], outline="red")
         draw.text((x1, y1 - 30), class_name, fill=(0, 0, 255, 0))
 
     plt.imshow(img)
+    plt.savefig(config.path_name + "images/" + f"{label}.png")
 
 
 def save_model(model):

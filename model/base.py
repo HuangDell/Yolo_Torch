@@ -20,13 +20,12 @@ class BaseModel(nn.Module):
         return loss
 
     # 测试模型正确率
-    def evaluate(self, test_data, test_nums=10):
+    def evaluate(self, test_data):
         with torch.no_grad():
             for i, batch in enumerate(test_data):
-                if i == test_nums:
-                    return
                 inputs, _ = batch
                 inputs = inputs.to(config.device)  # 放在GPU上加速训练
                 out = self(inputs)
-                show_output(out)
+                show_output(i,inputs,out)
+        printf.info("测试完毕")
 

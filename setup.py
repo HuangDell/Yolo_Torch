@@ -47,7 +47,7 @@ def test():
     model = Yolo().to(config.device)
     model.load()
     model.eval()
-    model.evaluate(load.test_data, config.TEST_NUMS)
+    model.evaluate(load.test_data)
 
 
 def train():
