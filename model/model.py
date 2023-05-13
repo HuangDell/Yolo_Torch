@@ -3,6 +3,7 @@ import torch.nn as nn
 
 from model.base import BaseModel
 
+# 定义yolo模型的架构
 architecture_config = [
     (7, 64, 2, 3),
     "M",

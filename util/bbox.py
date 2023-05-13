@@ -35,16 +35,6 @@ def nMS(boxes, iou_threshold=0.5, threshold=0.4, format="midpoint"):
 
 
 def convert_cellboxes(predictions, S=7):
-    """
-    Converts bounding boxes output from Yolo with
-    an image split size of S into entire image ratios
-    rather than relative to cell ratios. Tried to do this
-    vectorized, but this resulted in quite difficult to read
-    code... Use as a black box? Or implement a more intuitive,
-    using 2 for loops iterating range(S) and convert them one
-    by one, resulting in a slower but more readable implementation.
-    """
-
     predictions = predictions.to("cpu")
     batch_size = predictions.shape[0]
     predictions = predictions.reshape(batch_size, 7, 7, 30)
@@ -86,6 +76,7 @@ def cellboxes_to_boxes(out, S=7):
     return all_bboxes
 
 
+# 绘制box
 def drawBox(x, y):
     img = x.permute(1, 2, 0)
     # plt.imshow(img)
